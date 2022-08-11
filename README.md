@@ -51,12 +51,20 @@ pub struct PlayerAnimationState {
 
 ```Rust
 impl AnimationTransition<PlayerAnimationVariant> for PlayerAnimationState {
-    fn next_idx(&mut self) -> usize {
-        // impl
+    fn wrapping_next_idx(&mut self) -> usize {
+        // This is example implementation, you can choose to update the page however you like
+        let current_idx = self.idx;
+        let (offset, size) = self.variant.page();
+
+        self.idx = offset + (current_idx + 1) % size;
+
+        self.idx
     }
 
     fn transition_variant(&mut self, to: PlayerAnimationVariant) {
-        // impl
+        let (offset, _) = to.page();
+        self.variant = to;
+        self.idx = offset;
     }
 }
 

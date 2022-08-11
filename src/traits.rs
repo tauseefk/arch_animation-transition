@@ -5,6 +5,6 @@ pub trait AnimationLoop {
 }
 
 pub trait AnimationTransition<T: AnimationLoop> {
-    fn next_idx(&mut self) -> usize;
+    fn wrapping_next_idx(&mut self) -> usize;
     fn transition_variant(&mut self, to: T);
 }
