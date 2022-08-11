@@ -10,7 +10,7 @@ You can probably use it for other things.
 
 ### Usage
 
-Create an enum to define animation loops.
+1. Create an enum to define animation loops
 
 ```Rust
 #[derive(Clone, PartialEq)]
@@ -21,7 +21,7 @@ pub enum PlayerAnimationVariant {
 }
 ```
 
-Implement AnimationLoop for the enum.
+2. Implement AnimationLoop for the enum
 
 ```Rust
 impl AnimationLoop for PlayerAnimationVariant {
@@ -36,7 +36,7 @@ impl AnimationLoop for PlayerAnimationVariant {
 }
 ```
 
-Create a struct to store current animation state.
+3. Create a struct to store current animation state
 
 ```Rust
 pub struct PlayerAnimationState {
@@ -45,9 +45,9 @@ pub struct PlayerAnimationState {
 }
 ```
 
-**And finally:**
+4. **And finally:**
 
-1. Implement `AnimationTransition` for the newly created struct.
+Option 1. Implement `AnimationTransition` for the newly created struct
 
 ```Rust
 impl AnimationTransition<PlayerAnimationVariant> for PlayerAnimationState {
@@ -70,7 +70,7 @@ impl AnimationTransition<PlayerAnimationVariant> for PlayerAnimationState {
 
 ```
 
-2. Or use the handy macro [here](https://github.com/tauseefk/animation-transition-derive-macro) like this:
+Option 2. Or use the handy macro [here](https://github.com/tauseefk/animation-transition-derive-macro) like this:
 
 ```Rust
 #[derive(AnimationTransitionMacro)]
