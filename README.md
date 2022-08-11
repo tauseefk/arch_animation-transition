@@ -47,7 +47,21 @@ pub struct PlayerAnimationState {
 
 4. **And finally:**
 
-Option 1. Implement `AnimationTransition` for the newly created struct
+Option 1. use the handy macro [here](https://github.com/tauseefk/animation-transition-derive-macro)
+
+```Rust
+#[derive(AnimationTransitionMacro)]
+pub struct PlayerAnimationState {
+    /// This is needed to tell the compiler the type of your variant enum
+    #[variant]
+    pub variant: PlayerAnimationVariant,
+    pub idx: usize,
+}
+```
+
+
+
+Option 2. Or Implement `AnimationTransition` for the newly created struct yourself
 
 ```Rust
 impl AnimationTransition<PlayerAnimationVariant> for PlayerAnimationState {
@@ -68,16 +82,4 @@ impl AnimationTransition<PlayerAnimationVariant> for PlayerAnimationState {
     }
 }
 
-```
-
-Option 2. Or use the handy macro [here](https://github.com/tauseefk/animation-transition-derive-macro) like this:
-
-```Rust
-#[derive(AnimationTransitionMacro)]
-pub struct PlayerAnimationState {
-    /// This is needed to tell the compiler the type of your variant enum
-    #[variant]
-    pub variant: PlayerAnimationVariant,
-    pub idx: usize,
-}
 ```
